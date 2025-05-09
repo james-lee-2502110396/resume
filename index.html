@@ -1,99 +1,199 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>이력서</title>
-</head>
-<body>
-  <h1>이력서</h1>
-  <table border="1" width="100%" cellspacing="0" cellpadding="5">
-    <tr>
-      <td rowspan="4" width="120" height="160" align="center" valign="middle">
-        <img src="lch.jpg" alt="증명사진" width="113" height="151">
-      </td>
-      <td>성명</td><td>이창훈</td>
-      <td>지원부서</td><td>백엔드</td>
-    </tr>
-    <tr>
-      <td>생년월일</td><td>1991.06.17</td>
-      <td>학번</td><td>2502110396</td>
-    </tr>
-    <tr>
-      <td>성별</td><td>남</td>
-      <td>연락처</td><td>010-4233-3208</td>
-    </tr>
-    <tr>
-      <td>주소</td><td colspan="3">인천광역시 부평구 무네미로 558번지 56</td>
-    </tr>
-    <tr>
-      <td colspan="5" align="center">javakotlinspring@gmail.com</td>
-    </tr>
-  </table>
+  <head>
+    <meta charset="UTF-8" />
+    <title>이력서</title>
+    <style>
+      body {
+        font-family: "Malgun Gothic", "맑은 고딕", Arial, sans-serif;
+        background: #f8f9fa;
+        margin: 0;
+        padding: 20px;
+      }
 
-  <br>
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 24px;
+      }
 
-  <table border="1" width="100%" cellspacing="0" cellpadding="5">
-    <tr>
-      <td colspan="6" align="center"><b>자격 및 교육 사항</b></td>
-    </tr>
-    <tr>
-      <td>취득일자</td><td>자격 및 교육명</td><td>비고</td>
-      <td>취득일자</td><td>자격 및 교육명</td><td>비고</td>
-    </tr>
-    <tr>
-      <td>2025</td><td>정보처리기사</td><td></td>
-      <td>2025</td><td>정보보안산업기사</td><td></td>
-    </tr>
-    <tr>
-      <td>2025</td><td>정보통신산업기사</td><td></td>
-      <td>2025</td><td>사무자동화산업기사</td><td></td>
-    </tr>
-    <tr>
-      <td>2025</td><td>SQLD</td><td></td>
-      <td>2025</td><td>ADSP</td><td></td>
-    </tr>
-    <tr>
-      <td>2025</td><td>리눅스마스터 2급</td><td></td>
-      <td>2025</td><td>네트워크 관리사 2급</td><td></td>
-    </tr>
-    <tr>
-      <td>2025</td><td>컴퓨터활용능력 1급</td><td></td>
-      <td></td><td></td><td></td>
-    </tr>
-  </table>
+      table {
+        border-collapse: collapse;
+        background: #fff;
+        margin-bottom: 32px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
 
-  <br>
+      td,
+      th {
+        border: 1px solid #d1d5db;
+        padding: 8px 12px;
+        font-size: 15px;
+        color: #222;
+      }
 
-  <table border="1" width="100%" cellspacing="0" cellpadding="5">
-    <tr>
-      <td colspan="6" align="center"><b>학력</b></td>
-    </tr>
-    <tr>
-      <td>졸업연월</td><td>학교명</td><td>졸업구분</td>
-      <td>전공</td><td>석차</td><td>비고</td>
-    </tr>
-    <tr>
-      <td>2010</td><td>한영고등학교</td><td>졸업</td>
-      <td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>2026</td><td>인천폴리텍대학</td><td>졸업</td>
-      <td>AI융합소프트웨어학과</td><td></td><td></td>
-    </tr>
-  </table>
+      th {
+        background: #f1f5f9;
+        font-weight: bold;
+        text-align: center;
+      }
 
-  <br>
+      td {
+        vertical-align: middle;
+      }
 
-  <table border="1" width="100%" cellspacing="0" cellpadding="5">
-    <tr>
-      <td colspan="5" align="center"><b>경력</b></td>
-    </tr>
-    <tr>
-      <td>근무기간</td><td>근무처</td><td>직위</td><td>담당 직무</td><td>비고</td>
-    </tr>
-    <tr>
-      <td colspan="5" height="100"></td>
-    </tr>
-  </table>
-</body>
+      tr:nth-child(even) {
+        background: #f9fafb;
+      }
+
+      img {
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+      }
+      
+      b {
+        color: #2563eb;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>이력서</h1>
+    <table border="1" width="100%" cellspacing="0" cellpadding="5">
+      <tr>
+        <td rowspan="4" width="120" height="160" align="center" valign="middle">
+          <img src="lch.jpg" alt="증명사진" width="113" height="151" />
+        </td>
+        <td>성명</td>
+        <td>이창훈</td>
+        <td>지원부서</td>
+        <td>백엔드</td>
+      </tr>
+      <tr>
+        <td>생년월일</td>
+        <td>1991.06.17</td>
+        <td>학번</td>
+        <td>2502110396</td>
+      </tr>
+      <tr>
+        <td>성별</td>
+        <td>남</td>
+        <td>연락처</td>
+        <td>010-4233-3208</td>
+      </tr>
+      <tr>
+        <td>주소</td>
+        <td colspan="3">인천광역시 부평구 무네미로 558번지 56</td>
+      </tr>
+      <tr>
+        <td colspan="5" align="center">javakotlinspring@gmail.com</td>
+      </tr>
+    </table>
+
+    <br />
+
+    <table border="1" width="100%" cellspacing="0" cellpadding="5">
+      <tr>
+        <td colspan="6" align="center"><b>자격 및 교육 사항</b></td>
+      </tr>
+      <tr>
+        <td>취득일자</td>
+        <td>자격 및 교육명</td>
+        <td>비고</td>
+        <td>취득일자</td>
+        <td>자격 및 교육명</td>
+        <td>비고</td>
+      </tr>
+      <tr>
+        <td>2025</td>
+        <td>정보처리기사</td>
+        <td></td>
+        <td>2025</td>
+        <td>정보보안산업기사</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2025</td>
+        <td>정보통신산업기사</td>
+        <td></td>
+        <td>2025</td>
+        <td>사무자동화산업기사</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2025</td>
+        <td>SQLD</td>
+        <td></td>
+        <td>2025</td>
+        <td>ADSP</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2025</td>
+        <td>리눅스마스터 2급</td>
+        <td></td>
+        <td>2025</td>
+        <td>네트워크 관리사 2급</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2025</td>
+        <td>컴퓨터활용능력 1급</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <br />
+
+    <table border="1" width="100%" cellspacing="0" cellpadding="5">
+      <tr>
+        <td colspan="6" align="center"><b>학력</b></td>
+      </tr>
+      <tr>
+        <td>졸업연월</td>
+        <td>학교명</td>
+        <td>졸업구분</td>
+        <td>전공</td>
+        <td>석차</td>
+        <td>비고</td>
+      </tr>
+      <tr>
+        <td>2010</td>
+        <td>한영고등학교</td>
+        <td>졸업</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2026</td>
+        <td>인천폴리텍대학</td>
+        <td>졸업</td>
+        <td>AI융합소프트웨어학과</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <br />
+
+    <table border="1" width="100%" cellspacing="0" cellpadding="5">
+      <tr>
+        <td colspan="5" align="center"><b>경력</b></td>
+      </tr>
+      <tr>
+        <td>근무기간</td>
+        <td>근무처</td>
+        <td>직위</td>
+        <td>담당 직무</td>
+        <td>비고</td>
+      </tr>
+      <tr>
+        <td colspan="5" height="100"></td>
+      </tr>
+    </table>
+  </body>
 </html>
