@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>학과 홈페이지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f8ff;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 14px 32px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2a2a2a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #e0ecff;
+            color: #1d5bbf;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-box input[type="text"] {
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input[type="text"]:focus {
+            outline: none;
+            border-color: #6a9bd8;
+            box-shadow: 0 0 0 3px #d0e4ff;
+        }
+
+        .login-btn {
+            padding: 8px 16px;
+            background-color: #6a9bd8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #5789c3;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 160px;
+            height: 100vh;
+            background-color: #eef3fb;
+            padding-top: 30px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: width 0.3s ease;
+            overflow: hidden;
+        }
+
+        .sidebar-collapsed {
+            width: 0 !important;
+        }
+
+        .sidebar-toggle-btn {
+            position: fixed;
+            top: 80px;
+            left: 170px;
+            z-index: 1001;
+            background-color: #6a9bd8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-toggle-btn:hover {
+            background-color: #5789c3;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0 20px;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-menu a {
+            text-decoration: none;
+            font-size: 16px;
+            color: #333;
+            padding: 10px 12px;
+            display: block;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar-menu a:hover {
+            background-color: #d6e6ff;
+            color: #1a4fa2;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            padding-top: 70px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            transition: padding-left 0.3s ease;
+            padding-left: 180px;
+        }
+
+        .sidebar-collapsed~.main-content {
+            padding-left: 20px !important;
+        }
+
+        .schedule-section {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .schedule-section h2 {
+            font-size: 24px;
+            color: #2a2a2a;
+            margin-bottom: 20px;
+            border-left: 5px solid #6a9bd8;
+            padding-left: 12px;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .day-header {
+            background-color: #dfe9f5;
+            text-align: center;
+            padding: 12px 0;
+            font-weight: bold;
+            border-radius: 10px;
+            color: #333;
+        }
+
+        .class-box {
+            background-color: #ffffff;
+            border: 1px solid #dce6f4;
+            border-radius: 10px;
+            padding: 14px 10px;
+            text-align: center;
+            min-height: 60px;
+            font-size: 14px;
+            color: #2a2a2a;
+            transition: background-color 0.3s;
+        }
+
+        .class-box:hover {
+            background-color: #f0f5ff;
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: #f1f5ff;
+            padding: 30px 40px 15px;
+            border-top: 1px solid #dbe3f1;
+            font-size: 14px;
+            color: #555;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .footer-left p {
+            margin: 4px 0;
+        }
+
+        .footer-right a {
+            text-decoration: none;
+            color: #555;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .footer-right a:first-child {
+            margin-left: 0;
+        }
+
+        .footer-right a:hover {
+            color: #1d5bbf;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            margin-top: 10px;
+            border-top: 1px dashed #ccd5e3;
+            padding-top: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                height: auto;
+                gap: 12px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .right-section {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .sidebar,
+            .sidebar-toggle-btn {
+                display: none;
+            }
+
+            .main-content {
+                padding-left: 20px !important;
+            }
+
+            .schedule-grid {
+                overflow-x: auto;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .schedule-grid .day-header,
+            .schedule-grid .class-box {
+                display: inline-block;
+                width: 140px;
+                vertical-align: top;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-right {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .footer-right a {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="로고" />
+            <div class="logo-text">OO대학교</div>
+        </div>
+
+        <div class="nav-links">
+            <a href="#">AI소프트학과</a>
+            <a href="#">자동차학과</a>
+            <a href="#">반도체학과</a>
+            <a href="#">자유게시판</a>
+        </div>
+
+        <div class="right-section">
+            <div class="search-box">
+                <input type="text" placeholder="검색어 입력..." />
+            </div>
+            <button class="login-btn">로그인</button>
+        </div>
+    </nav>
+
+    <!-- Toggle Button -->
+    <button class="sidebar-toggle-btn" onclick="toggleSidebar()">☰</button>
+
+    <!-- Layout -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">채팅</a></li>
+                <li><a href="#">시간표</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <main id="mainContent" class="main-content">
+            <section class="schedule-section">
+                <h2>📅 AI소프트학과 시간표</h2>
+                <div class="schedule-grid">
+                    <div class="day-header">월요일</div>
+                    <div class="day-header">화요일</div>
+                    <div class="day-header">수요일</div>
+                    <div class="day-header">목요일</div>
+                    <div class="day-header">금요일</div>
+
+                    <div class="class-box">자료구조</div>
+                    <div class="class-box">공학수학</div>
+                    <div class="class-box">자료구조</div>
+                    <div class="class-box"></div>
+                    <div class="class-box">컴퓨터비전</div>
+
+                    <div class="class-box">자료구조</div>
+                    <div class="class-box">공학수학</div>
+                    <div class="class-box">자료구조</div>
+                    <div class="class-box">인공지능</div>
+                    <div class="class-box">컴퓨터비전</div>
+
+                    <div class="class-box">웹프로그래밍</div>
+                    <div class="class-box"></div>
+                    <div class="class-box">웹프로그래밍</div>
+                    <div class="class-box">인공지능</div>
+                    <div class="class-box"></div>
+
+                    <div class="class-box">웹프로그래밍</div>
+                    <div class="class-box"></div>
+                    <div class="class-box">웹프로그래밍</div>
+                    <div class="class-box">인공지능</div>
+                    <div class="class-box"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <p><strong>OO대학교</strong></p>
+                <p>서울특별시 어딘가구 캠퍼스로 123</p>
+            </div>
+            <div class="footer-right">
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용약관</a>
+                <a href="#">문의하기</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 OO대학교. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("sidebar-collapsed");
+        }
+    </script>
+</body>
+
+</html>
